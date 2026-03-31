@@ -1,0 +1,24 @@
+class Solution:
+    def maxDifference(self, s: str) -> int:
+        m = {}
+        for c in s:
+            if c in m:
+                m[c] += 1
+            else:
+                m[c] = 1
+        biggestOdd = -9999
+        biggestEven = -9999
+        smallestOdd = 9999
+        smallestEven = 9999
+        for c in m:
+            if m[c] % 2 == 0 and m[c] > biggestEven:
+                biggestEven = m[c]
+            if m[c] % 2 == 0 and m[c] < smallestEven:
+                smallestEven = m[c]
+            if m[c] % 2 != 0 and m[c] > biggestOdd:
+                biggestOdd = m[c]
+            if m[c] % 2 != 0 and m[c] < smallestOdd:
+                smallestOdd = m[c]
+        return biggestOdd - smallestEven
+
+
